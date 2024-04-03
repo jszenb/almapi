@@ -6,6 +6,9 @@
 /pkg/
 /spec/reports/
 /tmp/
+/.github
+/spec/almapi_spec_init.rb
+
 
 # rspec failure tracking
 .rspec_status

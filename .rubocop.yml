@@ -1,13 +1,75 @@
+# Utiliser une version (peu) édulcorée des règles de base de rubocop
+inherit_from:
+  - http://relaxed.ruby.style/rubocop.yml
+
+# Ajoute des règles de performance aux règles de base de Rubocop
+require:
+  - rubocop-performance
+
 AllCops:
-  TargetRubyVersion: 2.6
+  # Chaque version de rubocop ajoute de nouvelles règles.
+  # Ceci les active par défaut.
+  NewCops: enable
+  DisplayStyleGuide: true
+  DisplayCopNames: true
+  Exclude:
+    - "bin/*"
+    - "vendor/**/*"
 
-Style/StringLiterals:
+# Certains fichiers sont de gigantesques block.
+# Ne pas les compter.
+Metrics/BlockLength:
+  Exclude:
+    - "spec/**/*.rb"
+    - "Guardfile"
+    - "vendor/bundle"
+    - "*.gemspec"
+
+# Les règles qui vont suivre sont des règles de style
+# permettant de split les lignes.
+Layout/DotPosition:
   Enabled: true
-  EnforcedStyle: double_quotes
+  EnforcedStyle: trailing
 
-Style/StringLiteralsInInterpolation:
+Style/TrailingCommaInArrayLiteral:
   Enabled: true
-  EnforcedStyle: double_quotes
+  EnforcedStyleForMultiline: comma
 
+Style/TrailingCommaInHashLiteral:
+  Enabled: true
+  EnforcedStyleForMultiline: comma
+
+Layout/MultilineArrayLineBreaks:
+  Enabled: true
+
+Layout/MultilineHashKeyLineBreaks:
+  Enabled: true
+
+Layout/MultilineMethodArgumentLineBreaks:
+  Enabled: true
+
+Layout/FirstArrayElementLineBreak:
+  Enabled: true
+
+Layout/FirstHashElementLineBreak:
+  Enabled: true
+
+Layout/FirstMethodArgumentLineBreak:
+  Enabled: true
+
+Layout/MultilineAssignmentLayout:
+  Enabled: true
+
+# Ajoute une limite maximum à la longueur d'une ligne
 Layout/LineLength:
+  Enabled: true
   Max: 120
+  # Cette option fait en sorte que Rubocop essaye d'ajouter
+  # des retours à la ligne là où il faut.
+  AutoCorrect: true
+  Exclude:
+    - Gemfile
+    - Guardfile
+
+Gemspec/DevelopmentDependencies:
+  EnforcedStyle: gemspec

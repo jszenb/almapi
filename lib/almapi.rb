@@ -1,17 +1,11 @@
 # frozen_string_literal: true
 
 require_relative "almapi/version"
+require_relative 'almapi/almapi_error'
+require_relative 'almapi/almapi'
 
+# Module Almapi handles Alma's API call and errors
+# @author jszenb
 module Almapi
-  class Bonjour
-    def self.say_hi
-      "Hello world!"
-    end
 
-    def self.say_bye
-      "Bye world!"
-    end
-  end
-  class Error < StandardError; end
-  # Your code goes here...
 end
