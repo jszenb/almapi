@@ -33,7 +33,7 @@ Gem::Specification.new do |spec|
   # spec.bindir = "exe"
   # spec.executables = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
   # spec.require_paths = ["lib"]
-  spec.files = ["lib/alamapi.rb",
+  spec.files = ["lib/almapi.rb",
     "lib/almapi/version.rb",
     "lib/almapi/almapi_error.rb",
     "lib/almapi/almapi.rb"
