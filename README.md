@@ -2,6 +2,8 @@
 
 This gem is used to handle Alma'a API call.
 
+[![Gem Version](https://badge.fury.io/rb/almapi.svg)](https://badge.fury.io/rb/almapi)
+
 ## Installation
 
 Install the gem and add to the application's Gemfile by executing:
