@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    almapi (0.1.3)
+    almapi (0.1.4)
       faraday
       faraday-follow_redirects
       zeitwerk (~> 2)
