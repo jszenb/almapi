@@ -71,7 +71,7 @@ module Almapi
     # @param data [String] : an XML string containing data to post.
     # @return [Response] : the resulting response
     def post(resource, data)
-      url_api = resource.to_s
+      url_api = "#{@uri_base}#{resource}"
       handle_response(@conn.post(url_api, data.to_s))
     end
 
@@ -82,7 +82,7 @@ module Almapi
     # @param data [String] : an XML string containing data to put.
     # @return [Response] : the resulting response. If error occurs, raises an AlmapiError
     def put(resource, data)
-      url_api = resource.to_s
+      url_api = "#{@uri_base}#{resource}"
       puts url_api
       begin
         handle_response(@conn.put(url_api, data.to_s, "Content-Type" => "application/xml"))
