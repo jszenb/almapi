@@ -61,6 +61,7 @@ module Almapi
           "#{@uri_base}#{resource}" # All other cases
         end
 
+      puts "[Almapi::Api.get] INFO URL #{url_api}"
       handle_response(@conn.get(url_api))
     end
 
@@ -72,6 +73,7 @@ module Almapi
     # @return [Response] : the resulting response
     def post(resource, data)
       url_api = "#{@uri_base}#{resource}"
+      puts "[Almapi::Api.post] INFO URL #{url_api}"
       handle_response(@conn.post(url_api, data.to_s))
     end
 
@@ -83,12 +85,8 @@ module Almapi
     # @return [Response] : the resulting response. If error occurs, raises an AlmapiError
     def put(resource, data)
       url_api = "#{@uri_base}#{resource}"
-      puts url_api
-      begin
-        handle_response(@conn.put(url_api, data.to_s, "Content-Type" => "application/xml"))
-      rescue StandardError => e
-        puts e
-      end
+      puts "[Almapi::Api.put] INFO URL #{url_api}"
+      handle_response(@conn.put(url_api, data.to_s))
     end
 
     # Handles a DELETE request creating the complete URI.
@@ -98,7 +96,8 @@ module Almapi
     # @param data [String] : an XML string containing data to put.
     # @return [Response] : the resulting response. If error occurs, raises an AlmapiError
     def delete(resource, _data)
-      url_api = resource.to_s
+      url_api = "#{@uri_base}#{resource}"
+      puts "[Almapi::Api.delete] INFO URL #{url_api}"
       handle_response(@conn.delete(url_api))
     end
 
@@ -107,16 +106,16 @@ module Almapi
     # [Private] handles the response and decides to raise AlmapiError if necessary
     #
     # @param response [Response] mandatory : the response of the API call
+    # @param method [String] mandatory the called HTTP method
     # @return [Response || AlmapiError] : the resulting response if the API call succeeded, else AlmapiError
-    def handle_response(response)
+    def handle_response(response, method)
       case response.status
       when 200
         # Success
         response
       else
         # Request has been correctly handled but cannot succeed
-        raise Almapi::AlmapiError, "AlmapiError : #{response.status} -> #{response.body}"
-        p @conn
+        raise Almapi::AlmapiError, "[Almapi::Api.handle_response] AlmapiError : for method #{method},  #{response.status} -> #{response.body}"
       end
     end
   end
