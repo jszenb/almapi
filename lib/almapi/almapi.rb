@@ -83,8 +83,9 @@ module Almapi
     # @return [Response] : the resulting response. If error occurs, raises an AlmapiError
     def put(resource, data)
       url_api = resource.to_s
+      puts url_api
       begin
-        handle_response(@conn.put(url_api, data.to_s))
+        handle_response(@conn.put(url_api, data.to_s, "Content-Type" => "application/xml"))
       rescue StandardError => e
         puts e
       end
@@ -115,6 +116,7 @@ module Almapi
       else
         # Request has been correctly handled but cannot succeed
         raise Almapi::AlmapiError, "AlmapiError : #{response.status} -> #{response.body}"
+        p @conn
       end
     end
   end
