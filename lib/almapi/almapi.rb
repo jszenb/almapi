@@ -93,9 +93,8 @@ module Almapi
     #
     # @param resource [String] mandatory : the part of the URI specifying the access point.
     #    Must not include "?" for it adds "?apikey" automatically.
-    # @param data [String] : an XML string containing data to put.
     # @return [Response] : the resulting response. If error occurs, raises an AlmapiError
-    def delete(resource, data)
+    def delete(resource)
       url_api = "#{@uri_base}#{resource}"
       puts "[Almapi::Api.delete] INFO URL #{url_api}"
       handle_response(@conn.delete(url_api), "DELETE")
