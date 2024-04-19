@@ -62,7 +62,7 @@ module Almapi
         end
 
       puts "[Almapi::Api.get] INFO URL #{url_api}"
-      handle_response(@conn.get(url_api))
+      handle_response(@conn.get(url_api), "GET")
     end
 
     # Handles a POST request creating the complete URI.
@@ -74,7 +74,7 @@ module Almapi
     def post(resource, data)
       url_api = "#{@uri_base}#{resource}"
       puts "[Almapi::Api.post] INFO URL #{url_api}"
-      handle_response(@conn.post(url_api, data.to_s))
+      handle_response(@conn.post(url_api, data.to_s), "POST")
     end
 
     # Handles a PUT request creating the complete URI.
@@ -86,7 +86,7 @@ module Almapi
     def put(resource, data)
       url_api = "#{@uri_base}#{resource}"
       puts "[Almapi::Api.put] INFO URL #{url_api}"
-      handle_response(@conn.put(url_api, data.to_s))
+      handle_response(@conn.put(url_api, data.to_s), "PUT")
     end
 
     # Handles a DELETE request creating the complete URI.
@@ -98,7 +98,7 @@ module Almapi
     def delete(resource, _data)
       url_api = "#{@uri_base}#{resource}"
       puts "[Almapi::Api.delete] INFO URL #{url_api}"
-      handle_response(@conn.delete(url_api))
+      handle_response(@conn.delete(url_api), "DELETE")
     end
 
     private
@@ -115,7 +115,8 @@ module Almapi
         response
       else
         # Request has been correctly handled but cannot succeed
-        raise Almapi::AlmapiError, "[Almapi::Api.handle_response] AlmapiError : for method #{method},  #{response.status} -> #{response.body}"
+        raise Almapi::AlmapiError,
+              "[Almapi::Api.handle_response] AlmapiError : for method #{method},  #{response.status} -> #{response.body}"
       end
     end
   end
