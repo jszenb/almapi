@@ -109,7 +109,7 @@ module Almapi
     # @return [Response || AlmapiError] : the resulting response if the API call succeeded, else AlmapiError
     def handle_response(response, method)
       case response.status
-      when 200
+      when 200, 204
         # Success
         response
       else
