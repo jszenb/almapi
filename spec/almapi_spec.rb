@@ -9,8 +9,7 @@ RSpec.describe Almapi do
 end
 
 RSpec.describe Almapi::Api do
-
-  the_api = Almapi::Api.new(APIKEY, URIBASE) 
+  the_api = Almapi::Api.new(APIKEY, URIBASE)
 
   it "gives @apikey value" do
     expect(the_api.apikey).to eq(APIKEY)
@@ -26,5 +25,5 @@ RSpec.describe Almapi::Api do
 
   it "gets an valid (success) response" do
     expect(the_api.get("/items?item_barcode=GED000011587").status).to eq(200)
-  end  
+  end
 end

@@ -7,5 +7,4 @@ require "almapi/almapi"
 # Module Almapi handles Alma's API call and errors
 # @author jszenb
 module Almapi
-
 end

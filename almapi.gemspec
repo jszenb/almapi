@@ -37,14 +37,13 @@ Gem::Specification.new do |spec|
   spec.files = Dir["{lib}/**/*.rb", "bin/*", "LICENSE", "*.md"]
   spec.require_path = 'lib'
 
+  spec.add_development_dependency "rspec", '~> 3.4'
+  spec.add_development_dependency "rubocop", '~> 1.63', '>= 1.63.2'
+  spec.add_development_dependency "rubocop-performance", '~> 1.21'
+  spec.add_development_dependency "yard", '~> 0.9.36'
 
-  spec.add_development_dependency "rspec"
-  spec.add_development_dependency "rubocop"
-  spec.add_development_dependency "rubocop-performance"
-  spec.add_development_dependency "yard"
-
-  spec.add_dependency 'faraday'
-  spec.add_dependency 'faraday-follow_redirects'
+  spec.add_dependency 'faraday', '~> 2.9'
+  spec.add_dependency 'faraday-follow_redirects', '~> 0.3.0'
   spec.add_dependency 'zeitwerk', '~> 2'
 
   # For more information and examples about making a new gem, check out our
